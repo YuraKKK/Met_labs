@@ -9,6 +9,7 @@ namespace Domain
      public class EFContext: DbContext
     {
         public DbSet<Ingredient> Ingredients { get; set; }
+        //public DbSet<Food> Foods { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var con = "";//ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;

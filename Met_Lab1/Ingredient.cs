@@ -9,6 +9,7 @@ namespace Met_Lab1
     /// </summary>
     public class Ingredient
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         /// <summary>
         /// Одиниці виміру - грами, штуки...

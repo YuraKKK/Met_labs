@@ -32,6 +32,11 @@ namespace DAL
                 context.Ingredients.AddRange(ingredients);
                 context.SaveChanges();
             }
+            //if (context.Food)
+            //{
+            //    Food food = new Food();
+            //    food.Specialize = Specialize.Chef;
+            //}
         }
     }
 }

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain
+namespace Test
 {
-    public class Order
+    class BaseFood
     {
-      
     }
 }
