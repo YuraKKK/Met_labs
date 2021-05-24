@@ -7,19 +7,10 @@ namespace Met_Lab1
     public class Order
     {
         public Guid Id { get; set; }
-        public List<OrderItem> OrderItems { get; set; }
-        public DateTime DateCreated { get; set; }
-        public Person User { get; set; }
-        public int TimeCooking { get; set; }
-        public void GetShowInfo()
-        {
-            Console.WriteLine("Список срав");
-            foreach (var item in OrderItems)
-            {
-                Console.WriteLine(item.Food);
-                Console.WriteLine(item.Price);
-            }
-        }
+        public string Status { get; set; }
+        public User user;
+        public List<Food> Foods { get; set; }
     }
-    
 }
+    
+
