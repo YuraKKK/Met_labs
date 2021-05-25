@@ -6,8 +6,14 @@ namespace Met_Lab1
 {
     public class Specialize
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public List<Food> Foods { get; set; }
+        private Guid _id { get; set; }
+        private string _name { get; set; }
+        private List<Food> _foods { get; set; }
+        public Specialize(string name, List<Food> foods)
+        {
+            _id = Guid.NewGuid();
+            _name = name;
+            _foods = foods;
+        }
     }
 }

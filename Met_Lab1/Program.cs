@@ -17,48 +17,67 @@ namespace Met_Lab1
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
 
-            Food hotdog = new Food();
-            hotdog.Name = "Hotdog";
-            hotdog.Price = 50;
-            hotdog.Time = 15;
-            hotdog.ingredients = new List<string>
-            {
-                "Sausage",
-                //...
-            };
-            Food panini = new Food();
-            panini.Name = "Panini";
-            panini.Price = 40;
-            panini.Time = 10;
-            Qualification level4 = new Qualification();
-            Qualification level3 = new Qualification();
-            level4.Name = "Level4";
-            level4.qualificationFoods = new List<QualificationFood>
-            {
-                new QualificationFood
-                {
-                    food = hotdog,
-                    QualificationTime = 30
-                }
-            };
-            new QualificationFood
-            {
-                food = panini,
-                QualificationTime = 25
-            };
-            Specialize average = new Specialize();
-            average.Name = "Average";
-            average.Foods = new List<Food>
-            {
+            Food hotdog = new Food("Хотдог", 100, 10, 50, new List<Ingredients> {
+                new Ingredients("Булка"),
+                new Ingredients("Сосиска")
+            });
 
-            };
+            Food pizza = new Food("Піцца", 120, 40, 60, new List<Ingredients> {
+                new Ingredients("Тісто"),
+                new Ingredients("Ковбаса")
+            });
+            Console.WriteLine(hotdog.GetFoodInfo());
 
-            Kitchener kitchener = new Kitchener();
-            kitchener.Name = "Andriy";
-            kitchener.qualification = level4;
-            kitchener.specialize = average;
+            Qualification level1 = new Qualification("Розряд 1", new List<QualificationFood> { 
+                new QualificationFood(hotdog, 10)
+            });
+            Qualification level2 = new Qualification("Розряд 2", new List<QualificationFood> {
+                new QualificationFood(hotdog, 5),
+                new QualificationFood(pizza, 15)
+            });
+            Specialize kyhar = new Specialize("Кухар", new List<Food> { 
+                pizza, hotdog
+            });
+            Kitchener yura = new Kitchener("Yura", level1, kyhar);
+            Kitchener roman = new Kitchener("Roman", level2, kyhar);
+            int romancookTime = roman.TimeCooking();
+            int yuracookTime = yura.TimeCooking();
 
 
+            Menu pizzaMenu = new Menu("Піцци", new List<Food> {
+                pizza
+            });
+            Menu hotdogMenu = new Menu("Хотдоги", new List<Food> {
+                hotdog
+            });
+            pizzaMenu.CountFoods();
+            hotdogMenu.CountFoods();
+
+            User userYura = new User();
+            userYura.Id = Guid.NewGuid();
+            userYura.Name = "Yura";
+            userYura.PhoneNumber = "0687602022";
+            userYura.Login = "yurkis02@gmail.com";
+            userYura.Password = "0101";
+
+            Order order = new Order("Нове замовлення", userYura, new List<Food>
+            {
+                pizza, hotdog
+            });
+            int item = order.GetCompletedTime();
+            Console.WriteLine("Час приготування замовлення");
+
+
+            CookRoom cookRoom = new CookRoom("Кухня", new List<Kitchener> { 
+            yura, roman
+            }, new List<Order> { 
+            order
+            });
+            cookRoom.AddKitchener(roman);
+            cookRoom.AddOrder(order);
+
+            
+            
             //BaseFood food;
             //int action = 0;
             //do

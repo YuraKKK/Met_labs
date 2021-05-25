@@ -6,10 +6,26 @@ namespace Met_Lab1
 {
     public class Kitchener
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Qualification qualification;
-        public Specialize specialize;
-
+        private Guid _id { get; set; }
+        private string _name { get; set; }
+        private Qualification _qualification;
+        private Specialize _specialize;
+        public Kitchener(string name, Qualification qualification, Specialize specialize)
+        {
+            _id = Guid.NewGuid();
+            _name = name;
+            _qualification = qualification;
+            _specialize = specialize;
+        }
+        public int TimeCooking()
+        {
+            int time = 0;
+            foreach (var food in _qualification.GetQualificationFoods())
+            {
+                time += food.QualificationTime;
+            }
+            return time;
+            
+        }
     }
 }
